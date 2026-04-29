@@ -1,0 +1,164 @@
+[
+  {
+    "usuario": "kevindidier.carbajalrodriguez",
+    "tipo": "HH",
+    "clave": "IS-894677",
+    "dia": "4/01/2026",
+    "hora": "6:12:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-894677"
+  },
+  {
+    "usuario": "kevindidier.carbajalrodriguez",
+    "tipo": "IMPRESORA",
+    "clave": "IS-894786",
+    "dia": "4/01/2026",
+    "hora": "12:00:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-894786"
+  },
+  {
+    "usuario": "edgaralfredo.acostazarco",
+    "tipo": "HH",
+    "clave": "IS-897163",
+    "dia": "6/01/2026",
+    "hora": "15:33:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-897163"
+  },
+  {
+    "usuario": "Yang Magdiel Castro",
+    "tipo": "CAMARAS",
+    "clave": "IS-910772",
+    "dia": "19/01/2026",
+    "hora": "12:31:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-910772"
+  },
+  {
+    "usuario": "Martin Gustavo Sanchez",
+    "tipo": "BUGS",
+    "clave": "IS-913966",
+    "dia": "22/01/2026",
+    "hora": "9:14:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-913966"
+  },
+  {
+    "usuario": "Naomi Navarro",
+    "tipo": "HH",
+    "clave": "IS-918385",
+    "dia": "27/01/2026",
+    "hora": "6:55:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-918385"
+  },
+  {
+    "usuario": "edgaralfredo.acostazarco",
+    "tipo": "VPN",
+    "clave": "IS-911930",
+    "dia": "19/01/2026",
+    "hora": "13:43:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-911930"
+  },
+  {
+    "usuario": "Juan Antonio Flores",
+    "tipo": "HH",
+    "clave": "IS-924574",
+    "dia": "2/02/2026",
+    "hora": "7:49:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-924574"
+  },
+  {
+    "usuario": "Kevin Didier Carbajal",
+    "tipo": "HH",
+    "clave": "IS-932553",
+    "dia": "10/02/2026",
+    "hora": "8:00:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-932553"
+  },
+  {
+    "usuario": "Alexandra Andrea Juarez",
+    "tipo": "HH",
+    "clave": "IS-970835",
+    "dia": "11/03/2026",
+    "hora": "9:02:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-970835"
+  },
+  {
+    "usuario": "Nancy Vianey Lopez",
+    "tipo": "LAPTOP",
+    "clave": "IS-972169",
+    "dia": "25/03/2026",
+    "hora": "14:17:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-972169"
+  },
+  {
+    "usuario": "Veronica Morales",
+    "tipo": "RED",
+    "clave": "IS-975228",
+    "dia": "28/03/2026",
+    "hora": "22:51:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-975228"
+  },
+  {
+    "usuario": "Jorge Eduardo Vega",
+    "tipo": "RING SCANNER",
+    "clave": "IS-985884",
+    "dia": "8/04/2026",
+    "hora": "16:37:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-985884"
+  },
+  {
+    "usuario": "Ramon Lopez",
+    "tipo": "GOOGLE",
+    "clave": "IS-986865",
+    "dia": "9/04/2026",
+    "hora": "15:14:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-986865"
+  },
+  {
+    "usuario": "Huttman Roberto Fernandez",
+    "tipo": "SOFTWARE",
+    "clave": "IS-990940",
+    "dia": "14/04/2026",
+    "hora": "16:40:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-990940"
+  },
+  {
+    "usuario": "Andre Jael Castillo Diaz",
+    "tipo": "TABLET",
+    "clave": "IS-989415",
+    "dia": "13/04/2026",
+    "hora": "9:46:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-989415"
+  },
+  {
+    "usuario": "Juan Antonio Flores",
+    "tipo": "P2S",
+    "clave": "IS-998467",
+    "dia": "23/04/2026",
+    "hora": "10:39:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-998467"
+  },
+  {
+    "usuario": "Juan Antonio Flores",
+    "tipo": "LAPTOP",
+    "clave": "IS-999647",
+    "dia": "24/04/2026",
+    "hora": "10:17:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-999647"
+  }
+]
