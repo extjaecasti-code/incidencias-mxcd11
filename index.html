@@ -23,21 +23,27 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 
 /* LOGIN */
 #loginScreen{position:fixed;inset:0;background:var(--ml-blue);display:flex;align-items:center;justify-content:center;z-index:999;}
-.login-box{background:#fff;border-radius:20px;padding:40px 44px;width:100%;max-width:420px;box-shadow:0 24px 80px rgba(0,0,0,.3);animation:popIn .4s cubic-bezier(.34,1.56,.64,1);}
+.login-box{background:#fff;border-radius:20px;padding:40px 44px;width:100%;max-width:440px;box-shadow:0 24px 80px rgba(0,0,0,.3);animation:popIn .4s cubic-bezier(.34,1.56,.64,1);}
 @keyframes popIn{from{opacity:0;transform:scale(.92) translateY(16px)}to{opacity:1;transform:none}}
 .login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
 .login-badge{background:var(--ml-yellow);color:var(--ml-blue);font-family:var(--mono);font-size:14px;font-weight:700;padding:7px 14px;border-radius:8px;}
 .login-title{font-family:var(--mono);font-size:14px;color:var(--ml-blue);font-weight:700;}
-.login-subtitle{font-size:13px;color:var(--text-m);margin-bottom:28px;}
-.login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.login-subtitle{font-size:13px;color:var(--text-m);margin-bottom:24px;}
+.login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
 .login-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-m);font-family:var(--mono);}
 .login-input{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s;width:100%;}
 .login-input:focus{border-color:var(--ml-blue);}
+.login-input.token-input{font-family:var(--mono);font-size:12px;letter-spacing:.5px;}
 .login-btn{width:100%;background:var(--ml-blue);color:#fff;border:none;border-radius:10px;padding:13px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .login-btn:hover{background:var(--ml-blue-m);transform:translateY(-1px);box-shadow:var(--sh-m);}
+.login-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
 .login-err{background:var(--ml-red-l);color:var(--ml-red);border:1px solid rgba(242,61,79,.25);border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none;}
 .login-err.show{display:block;}
 .login-footer{text-align:center;font-size:12px;color:var(--text-d);margin-top:20px;}
+.token-hint{font-size:11px;color:var(--text-d);margin-top:4px;line-height:1.4;}
+.divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
+.token-section{background:var(--ml-blue-l);border-radius:10px;padding:14px;margin-bottom:14px;}
+.token-section-title{font-family:var(--mono);font-size:11px;color:var(--ml-blue);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;}
 
 /* HEADER */
 .header{background:var(--ml-blue);padding:0 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:60px;box-shadow:0 2px 10px rgba(45,50,119,.3);}
@@ -49,7 +55,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .nav-tab{background:none;border:none;padding:0 22px;height:60px;font-family:var(--sans);font-size:13px;font-weight:600;color:rgba(255,255,255,.65);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;}
 .nav-tab:hover{color:#fff;background:rgba(255,255,255,.08);}
 .nav-tab.active{color:var(--ml-yellow);border-bottom-color:var(--ml-yellow);}
-.header-right{display:flex;align-items:center;gap:18px;}
+.header-right{display:flex;align-items:center;gap:14px;}
 .hstats{display:flex;gap:18px;}
 .hs{text-align:center;}
 .hs-val{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--ml-yellow);}
@@ -182,8 +188,6 @@ td.tc a:hover{text-decoration:underline;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.success .ti{color:var(--ml-yellow);}
 .toast.error{background:var(--ml-red);}
-
-/* SPINNER */
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -204,7 +208,8 @@ td.tc a:hover{text-decoration:underline;}
       </div>
     </div>
     <div class="login-subtitle">Ingresa tus credenciales para continuar</div>
-    <div class="login-err" id="loginErr">Usuario o contraseña incorrectos</div>
+    <div class="login-err" id="loginErr">—</div>
+
     <div class="login-field">
       <label class="login-label">Usuario</label>
       <input type="text" class="login-input" id="loginUser" placeholder="tu.usuario" autocomplete="username">
@@ -213,6 +218,17 @@ td.tc a:hover{text-decoration:underline;}
       <label class="login-label">Contraseña</label>
       <input type="password" class="login-input" id="loginPass" placeholder="••••••••" autocomplete="current-password">
     </div>
+
+    <hr class="divider">
+
+    <div class="token-section">
+      <div class="token-section-title">🔑 GitHub Token (solo la primera vez)</div>
+      <div class="login-field" style="margin-bottom:0">
+        <input type="password" class="login-input token-input" id="loginToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      </div>
+      <div class="token-hint">El token se guarda solo en tu navegador y no se sube a ningún lado. La próxima vez no lo necesitarás.</div>
+    </div>
+
     <button class="login-btn" id="loginBtn" onclick="doLogin()">
       <span id="loginBtnTxt">Iniciar sesión</span>
     </button>
@@ -393,65 +409,114 @@ td.tc a:hover{text-decoration:underline;}
 
 <script>
 /* ══════════════════════════════════════════════════════════
-   ⚙️  CONFIGURACIÓN — editar con tus datos reales
+   CONFIGURACIÓN — solo editar GH_USER y GH_REPO
+   El token lo ingresa cada usuario al hacer login
    ══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  // Tu usuario de GitHub (ej: "kevinmxcd11")
   GH_USER: "extjaecasti-code",
-
-  // Nombre del repositorio (ej: "incidencias-mxcd11")
   GH_REPO: "incidencias-mxcd11",
-
-  // Nombre del archivo JSON donde se guardan los datos
   GH_FILE: "data.json",
-
-  // Tu Personal Access Token de GitHub
-  // Permisos necesarios: repo > contents (read & write)
-  GH_TOKEN: "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",
 };
 
-// Usuarios del sistema — cambia nombres y contraseñas
+// Usuarios del sistema
 const USERS = [
   { username: "admin",    password: "ml2026!Admin",  name: "Administrador",   role: "Admin",    initials: "AD" },
-  { username: "Andre Castillo",    password: "Andre2026",     name: "Andre castillo",  role: "Operador", initials: "AC" },
-  { username: "Erick Crisostomo", password: "Erick2026",   name: "Erick Crisostomo", role: "Operador", initials: "EC" },
-  { username: "Luis Avalos",     password: "Luis2026",  name: "Luis Avalos",   role: "Operador", initials: "LA" },
-  { username: "Erick Avisai ",     password: "Erick2026",  name: "Erick Avisai",   role: "Operador", initials: "EA" },
+  { username: "kevin",    password: "kevin2026",     name: "Kevin Carbajal",  role: "Operador", initials: "KC" },
+  { username: "windows1", password: "win2026pass",   name: "Usuario Windows", role: "Operador", initials: "UW" },
+  { username: "mac1",     password: "mac2026passA",  name: "Usuario Mac 1",   role: "Operador", initials: "M1" },
+  { username: "mac2",     password: "mac2026passB",  name: "Usuario Mac 2",   role: "Operador", initials: "M2" },
 ];
-/* ══════════════════════════════════════════════════════════
-   FIN CONFIGURACIÓN
-   ══════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════ */
 
 const TCOL={'HH':'#2D3277','LAPTOP':'#EBCF00','IMPRESORA':'#00a650','CAMARAS':'#f23d4f','BUGS':'#ff6200','VPN':'#7a00bd','CCM':'#EBCF00','RED':'#f23d4f','SOFTWARE':'#00a650','TABLET':'#005fa3','GOOGLE':'#EBCF00','P2S':'#7a00bd','RING SCANNER':'#006b45'};
 const MES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+const TOKEN_KEY='ml_gh_token';
 let tickets=[],filtered=[],currentPage=1,sortField='',sortDir=1,editingId=null,deletingId=null;
 const PER=20;let chT,chM,chTT,currentUser=null,ghFileSha=null;
 
+/* ── TOKEN: guardar y leer del localStorage ── */
+function getToken(){ return localStorage.getItem(TOKEN_KEY)||''; }
+function saveToken(t){ if(t) localStorage.setItem(TOKEN_KEY,t); }
+function clearToken(){ localStorage.removeItem(TOKEN_KEY); }
+
+/* ── Al cargar la página: si ya hay token guardado, ocultamos el campo ── */
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved = getToken();
+  if(saved){
+    document.getElementById('loginToken').value = '••••••••••••••••••••';
+    document.getElementById('loginToken').disabled = true;
+    document.getElementById('loginToken').placeholder = 'Token guardado ✓';
+    document.getElementById('loginToken').style.color = 'var(--ml-green)';
+    document.getElementById('loginToken').style.borderColor = 'var(--ml-green)';
+  }
+});
+
 /* ── LOGIN ── */
-function doLogin(){
-  const u=document.getElementById('loginUser').value.trim();
-  const p=document.getElementById('loginPass').value;
-  const err=document.getElementById('loginErr');
+async function doLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const tInput = document.getElementById('loginToken');
+  const err = document.getElementById('loginErr');
   err.classList.remove('show');
-  const found=USERS.find(x=>x.username===u&&x.password===p);
-  if(!found){err.classList.add('show');return;}
-  currentUser=found;
-  const btn=document.getElementById('loginBtn');
-  btn.innerHTML='<div class="spinner"></div> Conectando...';
-  btn.disabled=true;
-  loadFromGitHub().then(()=>{
+
+  // Validar usuario y contraseña
+  const found = USERS.find(x => x.username===u && x.password===p);
+  if(!found){
+    err.textContent = 'Usuario o contraseña incorrectos';
+    err.classList.add('show');
+    return;
+  }
+
+  // Obtener token: usar el guardado o el recién ingresado
+  let token = getToken();
+  if(!tInput.disabled){
+    token = tInput.value.trim();
+    if(!token){
+      err.textContent = 'Ingresa tu GitHub Token la primera vez';
+      err.classList.add('show');
+      return;
+    }
+  }
+
+  currentUser = found;
+  const btn = document.getElementById('loginBtn');
+  btn.innerHTML = '<div class="spinner"></div> Conectando...';
+  btn.disabled = true;
+
+  // Guardar token para próximas veces
+  saveToken(token);
+
+  try {
+    await loadFromGitHub();
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('app').style.display='block';
-    document.getElementById('userAvatar').textContent=found.initials;
-    document.getElementById('userName').textContent=found.name;
-    document.getElementById('userRole').textContent=found.role;
-  }).catch(()=>{
-    btn.innerHTML='<span>Iniciar sesión</span>';
-    btn.disabled=false;
-  });
+    document.getElementById('userAvatar').textContent = found.initials;
+    document.getElementById('userName').textContent = found.name;
+    document.getElementById('userRole').textContent = found.role;
+  } catch(e) {
+    currentUser = null;
+    btn.innerHTML = '<span>Iniciar sesión</span>';
+    btn.disabled = false;
+    // Si falla por token inválido, limpiar el guardado
+    if(e.message && e.message.includes('401')){
+      clearToken();
+      tInput.disabled = false;
+      tInput.value = '';
+      tInput.placeholder = 'ghp_xxxxxxxxxxxxxxxxxxxx';
+      tInput.style.color = '';
+      tInput.style.borderColor = '';
+      err.textContent = 'Token inválido o expirado. Ingresa uno nuevo.';
+      err.classList.add('show');
+    } else {
+      err.textContent = 'No se pudo conectar. Verifica tu conexión.';
+      err.classList.add('show');
+    }
+  }
 }
+
 document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 document.getElementById('loginUser').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('loginPass').focus();});
+document.getElementById('loginToken').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 
 function doLogout(){
   if(!confirm('¿Cerrar sesión?'))return;
@@ -460,80 +525,76 @@ function doLogout(){
   document.getElementById('loginPass').value='';
   document.getElementById('loginBtn').innerHTML='<span>Iniciar sesión</span>';
   document.getElementById('loginBtn').disabled=false;
+  document.getElementById('loginErr').classList.remove('show');
   document.getElementById('app').style.display='none';
   document.getElementById('loginScreen').style.display='flex';
+  // Resetear campo token
+  const tInput=document.getElementById('loginToken');
+  const saved=getToken();
+  if(saved){
+    tInput.value='••••••••••••••••••••';
+    tInput.disabled=true;
+    tInput.placeholder='Token guardado ✓';
+    tInput.style.color='var(--ml-green)';
+    tInput.style.borderColor='var(--ml-green)';
+  }
 }
 
-/* ── SYNC STATUS ── */
+/* ── SYNC ── */
 function setSyncStatus(s,txt){
   const dot=document.getElementById('syncDot');
   dot.className='sync-dot'+(s==='syncing'?' syncing':s==='error'?' error':'');
   document.getElementById('syncTxt').textContent=txt;
 }
 
-/* ── GITHUB API: LOAD ── */
+/* ── GITHUB API ── */
+function ghHeaders(){
+  return {
+    Authorization:`token ${getToken()}`,
+    Accept:'application/vnd.github.v3+json',
+    'Content-Type':'application/json'
+  };
+}
+
 async function loadFromGitHub(){
   setSyncStatus('syncing','Cargando...');
   const url=`https://api.github.com/repos/${CONFIG.GH_USER}/${CONFIG.GH_REPO}/contents/${CONFIG.GH_FILE}`;
-  try{
-    const res=await fetch(url,{headers:{Authorization:`token ${CONFIG.GH_TOKEN}`,'Accept':'application/vnd.github.v3+json'}});
-    if(res.status===404){
-      // Archivo no existe todavía — inicializar con datos por defecto
-      tickets=getDefaultTickets();
-      await saveToGitHub('Inicialización del archivo de datos');
-      setSyncStatus('ok','Sincronizado');
-      populateFilters();applyFilters();buildCharts();
-      return;
-    }
-    if(!res.ok)throw new Error(`GitHub API error: ${res.status}`);
-    const json=await res.json();
-    ghFileSha=json.sha;
-    const content=JSON.parse(atob(json.content.replace(/\n/g,'')));
-    tickets=content.map((t,i)=>({...t,id:i,selected:false}));
-    setSyncStatus('ok','Sincronizado');
-    showToast(`${tickets.length} tickets cargados`,'success');
-  }catch(e){
-    setSyncStatus('error','Sin conexión');
-    showToast('No se pudo conectar con GitHub. Verifica el token y repositorio.','error');
+  const res=await fetch(url,{headers:ghHeaders()});
+  if(res.status===401) throw new Error('401 Token inválido');
+  if(res.status===404){
     tickets=getDefaultTickets();
-    throw e;
+    await saveToGitHub('Inicialización de datos');
+    setSyncStatus('ok','Sincronizado');
+    populateFilters();applyFilters();buildCharts();
+    return;
   }
+  if(!res.ok) throw new Error(`GitHub error ${res.status}`);
+  const json=await res.json();
+  ghFileSha=json.sha;
+  const content=JSON.parse(atob(json.content.replace(/\n/g,'')));
+  tickets=content.map((t,i)=>({...t,id:i,selected:false}));
+  setSyncStatus('ok','Sincronizado');
+  showToast(`${tickets.length} tickets cargados`,'success');
   populateFilters();applyFilters();buildCharts();
 }
 
-/* ── GITHUB API: SAVE ── */
-async function saveToGitHub(message='Actualización de tickets'){
+async function saveToGitHub(message='Actualización'){
   setSyncStatus('syncing','Guardando...');
   const url=`https://api.github.com/repos/${CONFIG.GH_USER}/${CONFIG.GH_REPO}/contents/${CONFIG.GH_FILE}`;
   const clean=tickets.map(({id,selected,...rest})=>rest);
   const content=btoa(unescape(encodeURIComponent(JSON.stringify(clean,null,2))));
   const body={message,content};
   if(ghFileSha)body.sha=ghFileSha;
-  try{
-    const res=await fetch(url,{
-      method:'PUT',
-      headers:{Authorization:`token ${CONFIG.GH_TOKEN}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
-      body:JSON.stringify(body)
-    });
-    if(!res.ok){
-      const err=await res.json();
-      // Si hay conflicto (otro usuario editó antes), recargar y reintentar
-      if(res.status===409||res.status===422){
-        showToast('Conflicto detectado — recargando datos...','error');
-        await loadFromGitHub();
-        return false;
-      }
-      throw new Error(err.message||`GitHub error ${res.status}`);
-    }
-    const data=await res.json();
-    ghFileSha=data.content.sha;
-    setSyncStatus('ok','Sincronizado');
-    return true;
-  }catch(e){
-    setSyncStatus('error','Error al guardar');
-    showToast('Error al guardar en GitHub: '+e.message,'error');
-    return false;
+  const res=await fetch(url,{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)});
+  if(!res.ok){
+    const err=await res.json();
+    if(res.status===409||res.status===422){showToast('Conflicto — recargando...','error');await loadFromGitHub();return false;}
+    throw new Error(err.message);
   }
+  const data=await res.json();
+  ghFileSha=data.content.sha;
+  setSyncStatus('ok','Sincronizado');
+  return true;
 }
 
 /* ── DEFAULT DATA ── */
@@ -541,29 +602,20 @@ function getDefaultTickets(){
   return [
     {usuario:'kevindidier.carbajalrodriguez',tipo:'HH',clave:'IS-894677',dia:'4/01/2026',hora:'6:12:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-894677'},
     {usuario:'kevindidier.carbajalrodriguez',tipo:'IMPRESORA',clave:'IS-894786',dia:'4/01/2026',hora:'12:00:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-894786'},
-    {usuario:'kevindidier.carbajalrodriguez',tipo:'HH',clave:'IS-896747',dia:'6/01/2026',hora:'8:51:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-896747'},
     {usuario:'edgaralfredo.acostazarco',tipo:'HH',clave:'IS-897163',dia:'6/01/2026',hora:'15:33:00',turno:'T2',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-897163'},
-    {usuario:'daniayareli.bartoloromero',tipo:'HH',clave:'IS-898379',dia:'7/01/2026',hora:'14:29:00',turno:'T2',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-898379'},
-    {usuario:'kevindidier.carbajalrodriguez',tipo:'HH',clave:'IS-899452',dia:'8/01/2026',hora:'11:49:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-899452'},
-    {usuario:'kevindidier.carbajalrodriguez',tipo:'HH',clave:'IS-902934',dia:'12/01/2026',hora:'7:58:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-902934'},
     {usuario:'Yang Magdiel Castro',tipo:'CAMARAS',clave:'IS-910772',dia:'19/01/2026',hora:'12:31:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-910772'},
-    {usuario:'Francisco Rene Tribouillier',tipo:'CAMARAS',clave:'IS-910972',dia:'19/01/2026',hora:'16:04:00',turno:'T2',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-910972'},
-    {usuario:'Fallo esclusa CCM MXCD11.',tipo:'CCM',clave:'IS-911083',dia:'19/01/2026',hora:'18:07:00',turno:'T2',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-911083'},
     {usuario:'Martin Gustavo Sanchez',tipo:'BUGS',clave:'IS-913966',dia:'22/01/2026',hora:'9:14:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-913966'},
-    {usuario:'Martin Gustavo Sanchez',tipo:'BUGS',clave:'IS-917212',dia:'26/01/2026',hora:'7:37:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-917212'},
     {usuario:'Naomi Navarro',tipo:'HH',clave:'IS-918385',dia:'27/01/2026',hora:'6:55:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-918385'},
     {usuario:'edgaralfredo.acostazarco',tipo:'VPN',clave:'IS-911930',dia:'19/01/2026',hora:'13:43:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-911930'},
     {usuario:'Juan Antonio Flores',tipo:'HH',clave:'IS-924574',dia:'2/02/2026',hora:'7:49:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-924574'},
     {usuario:'Kevin Didier Carbajal',tipo:'HH',clave:'IS-932553',dia:'10/02/2026',hora:'8:00:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-932553'},
-    {usuario:'Naomi Navarro',tipo:'HH',clave:'IS-934136',dia:'11/02/2026',hora:'8:12:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-934136'},
     {usuario:'Alexandra Andrea Juarez',tipo:'HH',clave:'IS-970835',dia:'11/03/2026',hora:'9:02:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-970835'},
     {usuario:'Nancy Vianey Lopez',tipo:'LAPTOP',clave:'IS-972169',dia:'25/03/2026',hora:'14:17:00',turno:'T2',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-972169'},
     {usuario:'Veronica Morales',tipo:'RED',clave:'IS-975228',dia:'28/03/2026',hora:'22:51:00',turno:'T3',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-975228'},
     {usuario:'Jorge Eduardo Vega',tipo:'RING SCANNER',clave:'IS-985884',dia:'8/04/2026',hora:'16:37:00',turno:'T2',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-985884'},
     {usuario:'Ramon Lopez',tipo:'GOOGLE',clave:'IS-986865',dia:'9/04/2026',hora:'15:14:00',turno:'T2',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-986865'},
-    {usuario:'Alexandra Andrea Juarez',tipo:'P2S',clave:'IS-989597',dia:'13/04/2026',hora:'13:28:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-989597'},
-    {usuario:'Andre Jael Castillo Diaz',tipo:'TABLET',clave:'IS-989415',dia:'13/04/2026',hora:'9:46:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-989415'},
     {usuario:'Huttman Roberto Fernandez',tipo:'SOFTWARE',clave:'IS-990940',dia:'14/04/2026',hora:'16:40:00',turno:'T2',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-990940'},
+    {usuario:'Andre Jael Castillo Diaz',tipo:'TABLET',clave:'IS-989415',dia:'13/04/2026',hora:'9:46:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-989415'},
     {usuario:'Juan Antonio Flores',tipo:'P2S',clave:'IS-998467',dia:'23/04/2026',hora:'10:39:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-998467'},
     {usuario:'Juan Antonio Flores',tipo:'LAPTOP',clave:'IS-999647',dia:'24/04/2026',hora:'10:17:00',turno:'T1',link:'https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-999647'},
   ].map((t,i)=>({...t,id:i,selected:false}));
@@ -608,7 +660,7 @@ function buildCharts(){
   if(dias.length)document.getElementById('m-range').textContent=`${dias[0]} → ${dias[dias.length-1]}`;
   const tt=ts[0];const tel=document.getElementById('m-top-tipo');tel.textContent=tt[0];tel.className=`top-badge ${getBadge(tt[0])}`;
   document.getElementById('m-top-tipo-cnt').textContent=`${tt[1]} tickets`;document.getElementById('m-top-tipo-pct').textContent=`${Math.round(tt[1]/total*100)}% del total`;
-  const tu=us[0];document.getElementById('m-top-user').textContent=tu[0];document.getElementById('m-top-user-cnt').textContent=`${tu[1]} tickets generados`;document.getElementById('m-top-user-pct').textContent=`${Math.round(tu[1]/total*100)}% del total`;
+  const tu=us[0];document.getElementById('m-top-user').textContent=tu[0];document.getElementById('m-top-user-cnt').textContent=`${tu[1]} tickets`;document.getElementById('m-top-user-pct').textContent=`${Math.round(tu[1]/total*100)}% del total`;
   document.getElementById('stat-total').textContent=total;document.getElementById('stat-tipos').textContent=Object.keys(tm).length;document.getElementById('stat-usuarios').textContent=Object.keys(um).length;
   const mm={};tickets.forEach(t=>{const p=t.dia.split('/');if(p.length>=3){const m=parseInt(p[1])-1;mm[m]=(mm[m]||0)+1;}});
   const ml=[],md=[];for(let i=0;i<12;i++){if(mm[i]!==undefined){ml.push(MES[i]);md.push(mm[i]);}}
@@ -678,26 +730,12 @@ async function saveTicket(){
   const ok=await saveToGitHub(`${who}: ${editingId!==null?'editó':'agregó'} ${d.clave}`);
   btn.innerHTML='✓ Guardar';btn.disabled=false;
   closeModal('formModal');populateFilters();applyFilters();rebuildCharts();
-  showToast(ok?(editingId!==null?'Ticket actualizado ✓':'Ticket agregado ✓'):'Guardado localmente','success');
+  showToast(ok?(editingId!==null?'Ticket actualizado ✓':'Ticket agregado ✓'):'Error al guardar','success');
 }
 function confirmDelete(id){deletingId=id;const t=tickets.find(x=>x.id===id);document.getElementById('confirmInfo').textContent=`${t.clave} — ${t.usuario}`;openModal('confirmModal');}
-async function execDelete(){
-  const t=tickets.find(x=>x.id===deletingId);
-  tickets=tickets.filter(x=>x.id!==deletingId);
-  closeModal('confirmModal');
-  const who=currentUser?currentUser.name:'Usuario';
-  await saveToGitHub(`${who}: eliminó ${t?t.clave:'ticket'}`);
-  showToast('Ticket eliminado','success');applyFilters();rebuildCharts();
-}
-function confirmDeleteSelected(){const n=tickets.filter(t=>t.selected).length;document.getElementById('multiText').textContent=`¿Eliminar ${n} ticket${n>1?'s':''} seleccionados? Acción irreversible.`;openModal('confirmMultiModal');}
-async function execDeleteSelected(){
-  const n=tickets.filter(t=>t.selected).length;
-  tickets=tickets.filter(t=>!t.selected);
-  closeModal('confirmMultiModal');
-  const who=currentUser?currentUser.name:'Usuario';
-  await saveToGitHub(`${who}: eliminó ${n} tickets`);
-  showToast(`${n} tickets eliminados`,'success');applyFilters();rebuildCharts();
-}
+async function execDelete(){const t=tickets.find(x=>x.id===deletingId);tickets=tickets.filter(x=>x.id!==deletingId);closeModal('confirmModal');const who=currentUser?currentUser.name:'Usuario';await saveToGitHub(`${who}: eliminó ${t?t.clave:'ticket'}`);showToast('Ticket eliminado','success');applyFilters();rebuildCharts();}
+function confirmDeleteSelected(){const n=tickets.filter(t=>t.selected).length;document.getElementById('multiText').textContent=`¿Eliminar ${n} ticket${n>1?'s':''} seleccionados?`;openModal('confirmMultiModal');}
+async function execDeleteSelected(){const n=tickets.filter(t=>t.selected).length;tickets=tickets.filter(t=>!t.selected);closeModal('confirmMultiModal');const who=currentUser?currentUser.name:'Usuario';await saveToGitHub(`${who}: eliminó ${n} tickets`);showToast(`${n} tickets eliminados`,'success');applyFilters();rebuildCharts();}
 function exportCSV(){const h='USUARIO,TIPO,CLAVE,FECHA,HORA,TURNO,LINK';const rows=tickets.map(t=>`${t.usuario},${t.tipo},${t.clave},${t.dia},${t.hora},${t.turno},${t.link}`);const blob=new Blob([[h,...rows].join('\n')],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='incidencias_2026.csv';a.click();showToast('CSV exportado','success');}
 
 /* ── HELPERS ── */
@@ -711,7 +749,7 @@ document.getElementById('filterTipo').addEventListener('change',applyFilters);
 document.getElementById('filterTurno').addEventListener('change',applyFilters);
 
 // Auto-refresh cada 90 segundos
-setInterval(()=>{if(currentUser){loadFromGitHub();}},90000);
+setInterval(()=>{if(currentUser)loadFromGitHub();},90000);
 </script>
 </body>
 </html>
