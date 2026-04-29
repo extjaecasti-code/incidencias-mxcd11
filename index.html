@@ -461,11 +461,11 @@ const CONFIG = {
 
 // Usuarios del sistema
 const USERS = [
-  { username: "admin",    password: "ml2026!Admin",  name: "Administrador",   role: "Admin",    initials: "AD" },
-  { username: "Andre Castillo",    password: "Andre2026",     name: "Andre castillo",  role: "Operador", initials: "AC" },
-  { username: "Erick Crisostomo", password: "Erick2026",   name: "Erick Crisostomo", role: "Operador", initials: "EC" },
-  { username: "Luis Avalos",     password: "Luis2026",  name: "Luis Avalos",   role: "Operador", initials: "LA" },
-  { username: "Erick Avisai ",     password: "Erick2026",  name: "Erick Avisai",   role: "Operador", initials: "EA" },
+  { username: "admin",          password: "ml2026!Admin", name: "Administrador",    role: "Admin",    initials: "AD" },
+  { username: "Andre Castillo", password: "Andre2026",    name: "Andre Castillo",   role: "Operador", initials: "AC" },
+  { username: "Erick Crisostomo", password: "Erick2026",  name: "Erick Crisostomo", role: "Operador", initials: "EC" },
+  { username: "Luis Avalos",    password: "Luis2026",     name: "Luis Avalos",      role: "Operador", initials: "LA" },
+  { username: "Erick Avisai",   password: "Erick2026",    name: "Erick Avisai",     role: "Operador", initials: "EA" },
 ];
 /* ══════════════════════════════════════════════════════════ */
 
@@ -917,13 +917,25 @@ function buildCharts(){
 }
 function rebuildCharts(){document.getElementById('tipos-hbar').innerHTML='';document.getElementById('usuarios-rank').innerHTML='';document.getElementById('turno-leg').innerHTML='';buildCharts();}
 
+/* ── DATE/TIME SORT HELPERS ── */
+function parseDateNum(d){if(!d)return 0;const p=d.split('/');if(p.length!==3)return 0;return parseInt(p[2])*10000+parseInt(p[1])*100+parseInt(p[0]);}
+function parseTimeNum(h){if(!h)return 0;const p=h.split(':');return parseInt(p[0]||0)*3600+parseInt(p[1]||0)*60+parseInt(p[2]||0);}
+
 /* ── TABLE ── */
 function applyFilters(){
   const q=document.getElementById('searchInput').value.toLowerCase();
   const tp=document.getElementById('filterTipo').value;
   const tr=document.getElementById('filterTurno').value;
   filtered=tickets.filter(t=>{const mq=!q||t.usuario.toLowerCase().includes(q)||t.clave.toLowerCase().includes(q)||t.tipo.toLowerCase().includes(q);return mq&&(!tp||t.tipo.toUpperCase()===tp)&&(!tr||t.turno===tr);});
-  if(sortField)filtered.sort((a,b)=>(a[sortField]||'').localeCompare(b[sortField]||'')*sortDir);
+  if(sortField){
+    filtered.sort((a,b)=>{
+      if(sortField==='dia')return(parseDateNum(a.dia)-parseDateNum(b.dia))*sortDir;
+      if(sortField==='hora')return(parseTimeNum(a.hora)-parseTimeNum(b.hora))*sortDir;
+      return(a[sortField]||'').localeCompare(b[sortField]||'')*sortDir;
+    });
+  } else {
+    filtered.sort((a,b)=>parseDateNum(b.dia)-parseDateNum(a.dia));
+  }
   currentPage=1;renderTable();
 }
 function sortBy(f){if(sortField===f)sortDir*=-1;else{sortField=f;sortDir=1;}applyFilters();}
