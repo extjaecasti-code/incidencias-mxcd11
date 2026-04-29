@@ -149,6 +149,7 @@ td.tc a:hover{text-decoration:underline;}
 .bSOFTWARE{background:#e6f7ee;color:#007a3a;}.bTABLET{background:#e6f5ff;color:#005fa3;}
 .bGOOGLE{background:#fff8d6;color:#8b6e00;}.bP2S{background:#f5e6ff;color:#7a00bd;}
 .bRING{background:#e6fff5;color:#006b45;}.bOTHER{background:#f0f2f5;color:#6b7084;}
+.bCELULAR{background:#e6f0ff;color:#004fa3;}.bSAP{background:#fff3e6;color:#a34f00;}
 .tb{display:inline-block;padding:3px 9px;border-radius:5px;font-size:11px;font-family:var(--mono);font-weight:700;}
 .tbT1{background:#e6f7ee;color:#007a3a;}.tbT2{background:#e8eaf6;color:#2d3277;}.tbT3{background:#fdeaec;color:#c0001a;}
 .cbc{width:36px;}.rc{accent-color:var(--ml-blue);width:14px;height:14px;cursor:pointer;}
@@ -372,13 +373,53 @@ td.tc a:hover{text-decoration:underline;}
   <div class="modal">
     <div class="mt"><div class="dot"></div><span id="modalTitle">Nuevo Ticket</span></div>
     <div class="fg">
-      <div class="fgrp full"><label class="fl">Usuario</label><input type="text" class="fi" id="f_usuario" placeholder="Nombre del usuario"></div>
-      <div class="fgrp"><label class="fl">Tipo</label><input type="text" class="fi" id="f_tipo" placeholder="HH, LAPTOP..."></div>
-      <div class="fgrp"><label class="fl">Clave</label><input type="text" class="fi" id="f_clave" placeholder="IS-000000"></div>
-      <div class="fgrp"><label class="fl">Fecha</label><input type="text" class="fi" id="f_dia" placeholder="dd/mm/yyyy"></div>
-      <div class="fgrp"><label class="fl">Hora</label><input type="text" class="fi" id="f_hora" placeholder="HH:MM:SS"></div>
-      <div class="fgrp"><label class="fl">Turno</label><select class="fsel" id="f_turno"><option>T1</option><option>T2</option><option>T3</option></select></div>
-      <div class="fgrp full"><label class="fl">Link</label><input type="text" class="fi" id="f_link" placeholder="https://mercadolibre.atlassian.net/..."></div>
+      <div class="fgrp full">
+        <label class="fl">Usuario</label>
+        <input type="text" class="fi" id="f_usuario" placeholder="Nombre del usuario">
+      </div>
+      <div class="fgrp full">
+        <label class="fl">Tipo de Incidencia</label>
+        <select class="fsel" id="f_tipo">
+          <option value="">— Selecciona un tipo —</option>
+          <option value="BUGS">BUGS</option>
+          <option value="CAMARAS">CAMARAS</option>
+          <option value="CCM">CCM</option>
+          <option value="CELULAR">CELULAR</option>
+          <option value="GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÑA)">GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÑA)</option>
+          <option value="HH">HH</option>
+          <option value="IMPRESORA">IMPRESORA</option>
+          <option value="LAPTOP">LAPTOP</option>
+          <option value="P2S">P2S</option>
+          <option value="RED">RED</option>
+          <option value="RING SCANNER">RING SCANNER</option>
+          <option value="SAP">SAP</option>
+          <option value="SOFTWARE">SOFTWARE</option>
+          <option value="TABLET">TABLET</option>
+          <option value="VPN">VPN</option>
+        </select>
+      </div>
+      <div class="fgrp">
+        <label class="fl">Clave</label>
+        <input type="text" class="fi" id="f_clave" placeholder="IS-000000">
+      </div>
+      <div class="fgrp">
+        <label class="fl">Turno</label>
+        <select class="fsel" id="f_turno">
+          <option>T1</option><option>T2</option><option>T3</option>
+        </select>
+      </div>
+      <div class="fgrp">
+        <label class="fl">Fecha</label>
+        <input type="date" class="fi" id="f_dia" style="cursor:pointer">
+      </div>
+      <div class="fgrp">
+        <label class="fl">Hora</label>
+        <input type="time" class="fi" id="f_hora" step="1" style="cursor:pointer">
+      </div>
+      <div class="fgrp full">
+        <label class="fl">Link</label>
+        <input type="text" class="fi" id="f_link" placeholder="https://mercadolibre.atlassian.net/...">
+      </div>
     </div>
     <div class="mf">
       <button class="btn bg" onclick="closeModal('formModal')">Cancelar</button>
@@ -421,10 +462,10 @@ const CONFIG = {
 // Usuarios del sistema
 const USERS = [
   { username: "admin",    password: "ml2026!Admin",  name: "Administrador",   role: "Admin",    initials: "AD" },
-  { username: "Andre Castillo",    password: "Andre2026",     name: "Andre castillo",  role: "Operador", initials: "AC" },
-  { username: "Erick Crisostomo", password: "Erick2026",   name: "Erick Crisostomo", role: "Operador", initials: "EC" },
-  { username: "Luis Avalos",     password: "Luis2026",  name: "Luis Avalos",   role: "Operador", initials: "LA" },
-  { username: "Erick Avisai ",     password: "Erick2026",  name: "Erick Avisai",   role: "Operador", initials: "EA" },
+  { username: "kevin",    password: "kevin2026",     name: "Kevin Carbajal",  role: "Operador", initials: "KC" },
+  { username: "windows1", password: "win2026pass",   name: "Usuario Windows", role: "Operador", initials: "UW" },
+  { username: "mac1",     password: "mac2026passA",  name: "Usuario Mac 1",   role: "Operador", initials: "M1" },
+  { username: "mac2",     password: "mac2026passB",  name: "Usuario Mac 2",   role: "Operador", initials: "M2" },
 ];
 /* ══════════════════════════════════════════════════════════ */
 
@@ -826,7 +867,10 @@ function getBadge(t){
   if(u.includes('CCM'))return'bCCM';if(u.includes('RED'))return'bRED';
   if(u.includes('SOFTWARE'))return'bSOFTWARE';if(u.includes('TABLET'))return'bTABLET';
   if(u.includes('GOOGLE'))return'bGOOGLE';if(u.includes('P2S'))return'bP2S';
-  if(u.includes('RING'))return'bRING';return'bOTHER';
+  if(u.includes('RING'))return'bRING';
+  if(u.includes('CELULAR'))return'bCELULAR';
+  if(u.includes('SAP'))return'bSAP';
+  return'bOTHER';
 }
 
 /* ── CHARTS ── */
@@ -914,10 +958,68 @@ function updateSel(){const n=tickets.filter(t=>t.selected).length;document.getEl
 function populateFilters(){const tipos=[...new Set(tickets.map(t=>t.tipo).filter(Boolean))].sort();const sel=document.getElementById('filterTipo');sel.innerHTML='<option value="">Todos los tipos</option>';tipos.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;sel.appendChild(o);});}
 
 /* ── CRUD ── */
-function openAddModal(){editingId=null;document.getElementById('modalTitle').textContent='Nuevo Ticket';['f_usuario','f_tipo','f_clave','f_dia','f_hora','f_link'].forEach(id=>document.getElementById(id).value='');document.getElementById('f_turno').value='T1';openModal('formModal');}
-function openEditModal(id){editingId=id;const t=tickets.find(x=>x.id===id);if(!t)return;document.getElementById('modalTitle').textContent='Editar Ticket';document.getElementById('f_usuario').value=t.usuario;document.getElementById('f_tipo').value=t.tipo;document.getElementById('f_clave').value=t.clave;document.getElementById('f_dia').value=t.dia;document.getElementById('f_hora').value=t.hora;document.getElementById('f_turno').value=t.turno;document.getElementById('f_link').value=t.link;openModal('formModal');}
+function toInputDate(d){
+  // Converts dd/mm/yyyy or d/mm/yyyy → yyyy-mm-dd for date input
+  if(!d)return'';
+  const p=d.split('/');
+  if(p.length!==3)return'';
+  return `${p[2]}-${p[1].padStart(2,'0')}-${p[0].padStart(2,'0')}`;
+}
+function fromInputDate(d){
+  // Converts yyyy-mm-dd → d/mm/yyyy for storage
+  if(!d)return'';
+  const p=d.split('-');
+  if(p.length!==3)return'';
+  return `${parseInt(p[2])}/${p[1]}/${p[0]}`;
+}
+function toInputTime(h){
+  // Ensures HH:MM:SS format for time input
+  if(!h)return'';
+  const p=h.split(':');
+  if(p.length>=2)return`${p[0].padStart(2,'0')}:${p[1].padStart(2,'0')}`;
+  return h;
+}
+function fromInputTime(h){
+  // Returns HH:MM:SS from time input
+  if(!h)return'';
+  const p=h.split(':');
+  return`${p[0]||'00'}:${p[1]||'00'}:${p[2]||'00'}`;
+}
+function openAddModal(){
+  editingId=null;
+  document.getElementById('modalTitle').textContent='Nuevo Ticket';
+  document.getElementById('f_usuario').value='';
+  document.getElementById('f_tipo').value='';
+  document.getElementById('f_clave').value='';
+  document.getElementById('f_link').value='';
+  document.getElementById('f_turno').value='T1';
+  // Set today's date and current time as defaults
+  const now=new Date();
+  const yyyy=now.getFullYear();
+  const mm=String(now.getMonth()+1).padStart(2,'0');
+  const dd=String(now.getDate()).padStart(2,'0');
+  document.getElementById('f_dia').value=`${yyyy}-${mm}-${dd}`;
+  const hh=String(now.getHours()).padStart(2,'0');
+  const min=String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('f_hora').value=`${hh}:${min}`;
+  openModal('formModal');
+}
+function openEditModal(id){
+  editingId=id;
+  const t=tickets.find(x=>x.id===id);
+  if(!t)return;
+  document.getElementById('modalTitle').textContent='Editar Ticket';
+  document.getElementById('f_usuario').value=t.usuario;
+  document.getElementById('f_tipo').value=t.tipo;
+  document.getElementById('f_clave').value=t.clave;
+  document.getElementById('f_dia').value=toInputDate(t.dia);
+  document.getElementById('f_hora').value=toInputTime(t.hora);
+  document.getElementById('f_turno').value=t.turno;
+  document.getElementById('f_link').value=t.link;
+  openModal('formModal');
+}
 async function saveTicket(){
-  const d={usuario:document.getElementById('f_usuario').value.trim(),tipo:document.getElementById('f_tipo').value.trim(),clave:document.getElementById('f_clave').value.trim(),dia:document.getElementById('f_dia').value.trim(),hora:document.getElementById('f_hora').value.trim(),turno:document.getElementById('f_turno').value,link:document.getElementById('f_link').value.trim(),selected:false};
+  const d={usuario:document.getElementById('f_usuario').value.trim(),tipo:document.getElementById('f_tipo').value,clave:document.getElementById('f_clave').value.trim(),dia:fromInputDate(document.getElementById('f_dia').value),hora:fromInputTime(document.getElementById('f_hora').value),turno:document.getElementById('f_turno').value,link:document.getElementById('f_link').value.trim(),selected:false};
   if(!d.clave){showToast('La clave es obligatoria','error');return;}
   const btn=document.getElementById('saveBtn');btn.innerHTML='<div class="spinner"></div>';btn.disabled=true;
   if(editingId!==null){const i=tickets.findIndex(x=>x.id===editingId);if(i!==-1)tickets[i]={...tickets[i],...d};}
