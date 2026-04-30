@@ -207,7 +207,7 @@
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-907155"
   },
   {
-    "usuario": "Luis Fernando GonzÃÂÃÂ¡lez",
+    "usuario": "Luis Fernando GonzÃÂÃÂÃÂÃÂ¡lez",
     "tipo": "LAPTOP",
     "clave": "IS-908467",
     "dia": "16/01/2026",
@@ -631,7 +631,7 @@
   },
   {
     "usuario": "Erick Israel Perez",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-934334",
     "dia": "11/02/2026",
     "hora": "11:07:00",
@@ -712,7 +712,7 @@
   },
   {
     "usuario": "Daniel Alberto Hernandez",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-939807",
     "dia": "18/02/2026",
     "hora": "6:06:00",
@@ -856,7 +856,7 @@
   },
   {
     "usuario": "yair.contreras",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-945581",
     "dia": "23/02/2026",
     "hora": "16:59:00",
@@ -1396,7 +1396,7 @@
   },
   {
     "usuario": "Nelly Casarez Torres",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-970811",
     "dia": "24/03/2026",
     "hora": "13:27:00",
@@ -1603,7 +1603,7 @@
   },
   {
     "usuario": "Ramon Lopez",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-986865",
     "dia": "9/04/2026",
     "hora": "15:14:00",
@@ -1612,7 +1612,7 @@
   },
   {
     "usuario": "Evelin Susana Hernandez",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-986874",
     "dia": "9/04/2026",
     "hora": "15:22:00",
@@ -1621,7 +1621,7 @@
   },
   {
     "usuario": "Kenia Espinosa",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-986933",
     "dia": "9/04/2026",
     "hora": "16:36:00",
@@ -1702,7 +1702,7 @@
   },
   {
     "usuario": "Roberto Leyva",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-988890",
     "dia": "12/04/2026",
     "hora": "14:58:00",
@@ -1828,7 +1828,7 @@
   },
   {
     "usuario": "Jorge Hernandez",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-992334",
     "dia": "16/04/2026",
     "hora": "0:27:00",
@@ -1837,7 +1837,7 @@
   },
   {
     "usuario": "Jose Leonardo Gonzalez",
-    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂA)",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÃÂÃÂÃÂÃÂA)",
     "clave": "IS-993498",
     "dia": "17/04/2026",
     "hora": "3:36:00",
@@ -1960,5 +1960,14 @@
     "hora": "13:20:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1001699"
+  },
+  {
+    "usuario": "Ernesto Eric De La Rosa",
+    "tipo": "CCM",
+    "clave": "IS-1002847",
+    "dia": "28/04/2026",
+    "hora": "14:06:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1002847"
   }
 ]
