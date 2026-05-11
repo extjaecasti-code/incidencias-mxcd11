@@ -498,9 +498,9 @@ async function doLogin(){
   const p = document.getElementById('loginPass').value;
   const tInput = document.getElementById('loginToken');
   const err = document.getElementById('loginErr');
+  const btn = document.getElementById('loginBtn');
   err.classList.remove('show');
 
-  // Validar usuario y contraseña
   const found = USERS.find(x => x.username===u && x.password===p);
   if(!found){
     err.textContent = 'Usuario o contraseña incorrectos';
@@ -508,7 +508,6 @@ async function doLogin(){
     return;
   }
 
-  // Obtener token: usar el guardado o el recién ingresado
   let token = getToken();
   if(!tInput.disabled){
     token = tInput.value.trim();
@@ -520,40 +519,60 @@ async function doLogin(){
   }
 
   currentUser = found;
-  const btn = document.getElementById('loginBtn');
-  btn.innerHTML = '<div class="spinner"></div> Conectando...';
-  btn.disabled = true;
-
-  // Guardar token para próximas veces
   saveToken(token);
 
-  try {
-    await loadFromGitHub();
-    document.getElementById('loginScreen').style.display='none';
-    document.getElementById('app').style.display='block';
-    document.getElementById('userAvatar').textContent = found.initials;
-    document.getElementById('userName').textContent = found.name;
-    document.getElementById('userRole').textContent = found.role;
-  } catch(e) {
-    currentUser = null;
-    btn.innerHTML = '<span>Iniciar sesión</span>';
-    btn.disabled = false;
-    // Si falla por token inválido, limpiar el guardado
-    if(e.message && e.message.includes('401')){
-      clearToken();
-      tInput.disabled = false;
-      tInput.value = '';
-      tInput.placeholder = 'ghp_xxxxxxxxxxxxxxxxxxxx';
-      tInput.style.color = '';
-      tInput.style.borderColor = '';
-      err.textContent = 'Token inválido o expirado. Ingresa uno nuevo.';
-      err.classList.add('show');
-    } else {
-      err.textContent = 'No se pudo conectar. Verifica tu conexión.';
-      err.classList.add('show');
+  // Try up to 3 times with 2 second delay between attempts
+  let attempts = 0;
+  const maxAttempts = 3;
+
+  async function tryConnect(){
+    attempts++;
+    btn.innerHTML = `<div class="spinner"></div> Conectando${attempts > 1 ? ' (intento '+attempts+'/'+maxAttempts+')' : ''}...`;
+    btn.disabled = true;
+    btn.onclick = null;
+
+    try {
+      await loadFromGitHub();
+      document.getElementById('loginScreen').style.display='none';
+      document.getElementById('app').style.display='block';
+      document.getElementById('userAvatar').textContent = found.initials;
+      document.getElementById('userName').textContent = found.name;
+      document.getElementById('userRole').textContent = found.role;
+    } catch(e) {
+      currentUser = null;
+      btn.disabled = false;
+
+      if(e.message && e.message.includes('401')){
+        clearToken();
+        tInput.disabled = false;
+        tInput.value = '';
+        tInput.placeholder = 'ghp_xxxxxxxxxxxxxxxxxxxx';
+        tInput.style.color = '';
+        tInput.style.borderColor = '';
+        err.textContent = 'Token inválido o expirado. Ingresa uno nuevo.';
+        err.classList.add('show');
+        btn.innerHTML = '<span>Iniciar sesión</span>';
+        btn.onclick = doLogin;
+      } else if(attempts < maxAttempts){
+        // Retry automatically after 2 seconds
+        err.textContent = `Reintentando conexión... (${attempts}/${maxAttempts})`;
+        err.classList.add('show');
+        await new Promise(r => setTimeout(r, 2000));
+        currentUser = found;
+        return tryConnect();
+      } else {
+        err.textContent = 'No se pudo conectar tras varios intentos.';
+        err.classList.add('show');
+        btn.innerHTML = '<span>🔄 Reintentar</span>';
+        btn.disabled = false;
+        btn.onclick = doLogin;
+      }
     }
   }
+
+  await tryConnect();
 }
+
 
 document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 document.getElementById('loginUser').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('loginPass').focus();});
