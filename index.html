@@ -618,21 +618,28 @@ function ghHeaders(){
 
 async function loadFromGitHub(){
   setSyncStatus('syncing','Cargando...');
-  const url=`https://api.github.com/repos/${CONFIG.GH_USER}/${CONFIG.GH_REPO}/contents/${CONFIG.GH_FILE}`;
-  const res=await fetch(url,{headers:ghHeaders()});
-  if(res.status===401) throw new Error('401 Token inválido');
-  if(res.status===404){
+  const apiUrl=`https://api.github.com/repos/${CONFIG.GH_USER}/${CONFIG.GH_REPO}/contents/${CONFIG.GH_FILE}`;
+  const rawUrl=`https://raw.githubusercontent.com/${CONFIG.GH_USER}/${CONFIG.GH_REPO}/main/${CONFIG.GH_FILE}`;
+
+  // First get SHA from API
+  const metaRes=await fetch(apiUrl,{headers:ghHeaders()});
+  if(metaRes.status===401) throw new Error('401 Token inválido');
+  if(metaRes.status===404){
     tickets=getDefaultTickets();
     await saveToGitHub('Inicialización de datos');
     setSyncStatus('ok','Sincronizado');
     populateFilters();applyFilters();buildCharts();
     return;
   }
-  if(!res.ok) throw new Error(`GitHub error ${res.status}`);
-  const json=await res.json();
-  ghFileSha=json.sha;
-  const content=JSON.parse(atob(json.content.replace(/\n/g,'')));
-  tickets=content.map((t,i)=>({...t,id:i,selected:false}));
+  if(!metaRes.ok) throw new Error(`GitHub error ${metaRes.status}`);
+  const meta=await metaRes.json();
+  ghFileSha=meta.sha;
+
+  // Read content from raw URL (no base64 limit)
+  const rawRes=await fetch(rawUrl+'?t='+Date.now(),{headers:{Authorization:`token ${getToken()}`}});
+  if(!rawRes.ok) throw new Error(`Raw error ${rawRes.status}`);
+  const data=await rawRes.json();
+  tickets=data.map((t,i)=>({...t,id:i,selected:false}));
   setSyncStatus('ok','Sincronizado');
   showToast(`${tickets.length} tickets cargados`,'success');
   populateFilters();applyFilters();buildCharts();
