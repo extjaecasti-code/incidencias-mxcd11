@@ -618,27 +618,28 @@ function ghHeaders(){
 
 async function loadFromGitHub(){
   setSyncStatus('syncing','Cargando...');
-  const url=`https://api.github.com/repos/${CONFIG.GH_USER}/${CONFIG.GH_REPO}/contents/${CONFIG.GH_FILE}`;
-  const res=await fetch(url,{headers:ghHeaders()});
-  if(res.status===401) throw new Error('401 Token inválido');
-  if(res.status===404){
+  const contentsUrl=`https://api.github.com/repos/${CONFIG.GH_USER}/${CONFIG.GH_REPO}/contents/${CONFIG.GH_FILE}`;
+
+  // Step 1: get file metadata and SHA
+  const metaRes=await fetch(contentsUrl,{headers:ghHeaders()});
+  if(metaRes.status===401) throw new Error('401 Token inválido');
+  if(metaRes.status===404){
     tickets=getDefaultTickets();
     await saveToGitHub('Inicialización de datos');
     setSyncStatus('ok','Sincronizado');
     populateFilters();applyFilters();buildCharts();
     return;
   }
-  if(!res.ok) throw new Error(`GitHub error ${res.status}`);
-  const json=await res.json();
-  ghFileSha=json.sha;
+  if(!metaRes.ok) throw new Error(`GitHub error ${metaRes.status}`);
+  const meta=await metaRes.json();
+  ghFileSha=meta.sha;
 
-  // Decode large base64 safely using TextDecoder
-  const b64=json.content.replace(/\n/g,'');
-  const binary=atob(b64);
-  const bytes=new Uint8Array(binary.length);
-  for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
-  const decoded=new TextDecoder('utf-8').decode(bytes);
-  const data=JSON.parse(decoded);
+  // Step 2: read content via Git Blobs API (no 1MB limit)
+  const blobRes=await fetch(meta.git_url,{
+    headers:{...ghHeaders(), Accept:'application/vnd.github.v3.raw'}
+  });
+  if(!blobRes.ok) throw new Error(`Blob error ${blobRes.status}`);
+  const data=await blobRes.json();
 
   tickets=data.map((t,i)=>({...t,id:i,selected:false}));
   setSyncStatus('ok','Sincronizado');
