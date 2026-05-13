@@ -2095,5 +2095,14 @@
     "hora": "04:28:00",
     "turno": "T3",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1012587"
+  },
+  {
+    "usuario": "Juan Antonio Flores",
+    "tipo": "RING SCANNER",
+    "clave": "IS-1014085",
+    "dia": "13/05/2026",
+    "hora": "16:08:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1014085"
   }
 ]
