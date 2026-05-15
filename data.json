@@ -2113,5 +2113,14 @@
     "hora": "12:32:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1013869"
+  },
+  {
+    "usuario": "Mario Said Alcazar",
+    "tipo": "LAPTOP",
+    "clave": "IS-1015322",
+    "dia": "13/05/2026",
+    "hora": "22:05:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1015322"
   }
 ]
