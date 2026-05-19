@@ -2122,5 +2122,14 @@
     "hora": "22:05:00",
     "turno": "T3",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1015322"
+  },
+  {
+    "usuario": "Samantha Echeverria",
+    "tipo": "CCM",
+    "clave": "IS-1019313",
+    "dia": "19/05/2026",
+    "hora": "07:29:09",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1019313"
   }
 ]
