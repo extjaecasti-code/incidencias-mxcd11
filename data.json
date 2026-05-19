@@ -2131,5 +2131,14 @@
     "hora": "07:29:09",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1019313"
+  },
+  {
+    "usuario": "Edgar Alfredo Acosta",
+    "tipo": "HH",
+    "clave": "IS-1019518",
+    "dia": "19/05/2026",
+    "hora": "11:54:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1019518"
   }
 ]
