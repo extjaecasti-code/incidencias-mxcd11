@@ -2149,5 +2149,14 @@
     "hora": "17:22:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1022072"
+  },
+  {
+    "usuario": "IS-1022428",
+    "tipo": "LAPTOP",
+    "clave": "IS-1022428",
+    "dia": "22/05/2026",
+    "hora": "05:29:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1022428"
   }
 ]
