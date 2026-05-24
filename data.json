@@ -2194,5 +2194,14 @@
     "hora": "14:29:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1023402"
+  },
+  {
+    "usuario": "Johana Janett Resendiz",
+    "tipo": "SOFTWARE",
+    "clave": "IS-1022848",
+    "dia": "22/05/2026",
+    "hora": "14:59:00",
+    "turno": "T2",
+    "link": "http://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1022848"
   }
 ]
