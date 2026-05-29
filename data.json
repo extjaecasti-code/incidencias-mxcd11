@@ -2221,5 +2221,14 @@
     "hora": "16:40:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1023688"
+  },
+  {
+    "usuario": "Veronica Morales",
+    "tipo": "LAPTOP",
+    "clave": "IS-1025823",
+    "dia": "27/05/2026",
+    "hora": "01:26:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1025823"
   }
 ]
