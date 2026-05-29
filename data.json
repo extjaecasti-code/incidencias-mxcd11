@@ -2230,5 +2230,14 @@
     "hora": "01:26:00",
     "turno": "T3",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1025823"
+  },
+  {
+    "usuario": "Braulio Habisai Gomez",
+    "tipo": "P2S",
+    "clave": "IS-1027353",
+    "dia": "28/05/2026",
+    "hora": "14:17:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1027353"
   }
 ]
