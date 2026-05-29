@@ -2203,5 +2203,14 @@
     "hora": "14:59:00",
     "turno": "T2",
     "link": "http://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1022848"
+  },
+  {
+    "usuario": "Daniela Bautista",
+    "tipo": "IMPRESORA",
+    "clave": "IS-1022809",
+    "dia": "22/05/2026",
+    "hora": "14:02:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1022809"
   }
 ]
