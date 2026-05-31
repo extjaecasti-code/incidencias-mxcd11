@@ -414,7 +414,7 @@ td.tc a:hover{text-decoration:underline;}
       </div>
       <div class="fgrp">
         <label class="fl">Hora</label>
-        <input type="time" class="fi" id="f_hora" step="1" style="cursor:pointer">
+        <input type="time" class="fi" id="f_hora" step="1" style="cursor:pointer" onchange="autoTurno(this.value)">
       </div>
       <div class="fgrp full">
         <label class="fl">Link</label>
@@ -1025,6 +1025,22 @@ function fromInputTime(h){
   const p=h.split(':');
   return`${p[0]||'00'}:${p[1]||'00'}:${p[2]||'00'}`;
 }
+function getTurnoFromHour(h,m){
+  // 06:00-14:00 = T1, 14:00-22:00 = T2, 22:00-06:00 = T3
+  const mins = h*60+m;
+  if(mins >= 6*60 && mins < 14*60) return 'T1';
+  if(mins >= 14*60 && mins < 22*60) return 'T2';
+  return 'T3';
+}
+
+function autoTurno(val){
+  if(!val) return;
+  const parts = val.split(':');
+  const h = parseInt(parts[0]);
+  const m = parseInt(parts[1]||0);
+  document.getElementById('f_turno').value = getTurnoFromHour(h, m);
+}
+
 function openAddModal(){
   editingId=null;
   document.getElementById('modalTitle').textContent='Nuevo Ticket';
@@ -1032,16 +1048,17 @@ function openAddModal(){
   document.getElementById('f_tipo').value='';
   document.getElementById('f_clave').value='';
   document.getElementById('f_link').value='';
-  document.getElementById('f_turno').value='T1';
-  // Set today's date and current time as defaults
+  // Set today's date and current time
   const now=new Date();
   const yyyy=now.getFullYear();
   const mm=String(now.getMonth()+1).padStart(2,'0');
   const dd=String(now.getDate()).padStart(2,'0');
   document.getElementById('f_dia').value=`${yyyy}-${mm}-${dd}`;
-  const hh=String(now.getHours()).padStart(2,'0');
-  const min=String(now.getMinutes()).padStart(2,'0');
-  document.getElementById('f_hora').value=`${hh}:${min}`;
+  const hh=now.getHours();
+  const min=now.getMinutes();
+  document.getElementById('f_hora').value=`${String(hh).padStart(2,'0')}:${String(min).padStart(2,'0')}`;
+  // Auto-set turno based on current time
+  document.getElementById('f_turno').value=getTurnoFromHour(hh,min);
   openModal('formModal');
 }
 function openEditModal(id){
