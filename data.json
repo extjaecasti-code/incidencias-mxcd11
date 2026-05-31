@@ -2284,5 +2284,14 @@
     "hora": "14:23:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1028220"
+  },
+  {
+    "usuario": "Ernesto Eric De La Rosa",
+    "tipo": "CCM",
+    "clave": "IS-1028221",
+    "dia": "30/05/2026",
+    "hora": "14:27:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1028221"
   }
 ]
