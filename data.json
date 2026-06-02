@@ -2338,5 +2338,14 @@
     "hora": "16:07:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1029151"
+  },
+  {
+    "usuario": "Nelly Casarez Torres",
+    "tipo": "VPN",
+    "clave": "IS-1028354",
+    "dia": "29/05/2026",
+    "hora": "18:27:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1028354"
   }
 ]
