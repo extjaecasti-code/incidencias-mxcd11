@@ -2329,5 +2329,14 @@
     "hora": "13:57:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1029739"
+  },
+  {
+    "usuario": "Basilio De Jesus Morales",
+    "tipo": "CCM",
+    "clave": "IS-1029151",
+    "dia": "31/05/2026",
+    "hora": "16:07:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1029151"
   }
 ]
