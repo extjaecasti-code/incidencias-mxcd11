@@ -271,6 +271,17 @@ td.tc a:hover{text-decoration:underline;}
   <!-- DASHBOARD -->
   <div id="view-dashboard" class="view active">
   <div class="dash">
+
+    <!-- DATE FILTER BAR -->
+    <div class="dash-filter">
+      <span class="dash-filter-label">📅 Período</span>
+      <input type="date" id="dashDateFrom" onchange="applyDashFilter()">
+      <span class="dash-filter-sep">→</span>
+      <input type="date" id="dashDateTo" onchange="applyDashFilter()">
+      <button class="dash-filter-clear" onclick="clearDashFilter()">✕ Ver todo</button>
+      <span class="dash-filter-result" id="dashFilterResult"></span>
+    </div>
+
     <div class="dg3">
       <div class="card metric-card al">
         <div class="card-title"><div class="dot" style="background:var(--ml-yellow)"></div>Total Tickets</div>
@@ -642,6 +653,7 @@ async function loadFromGitHub(){
   const data=await blobRes.json();
 
   tickets=data.map((t,i)=>({...t,id:i,selected:false}));
+  dashFilteredTickets=[...tickets];
   setSyncStatus('ok','Sincronizado');
   showToast(`${tickets.length} tickets cargados`,'success');
   populateFilters();applyFilters();buildCharts();
@@ -901,36 +913,83 @@ function getBadge(t){
   return'bOTHER';
 }
 
+/* ── DASHBOARD DATE FILTER ── */
+let dashFilteredTickets = [];
+
+function parseDateNum2(d){
+  if(!d) return 0;
+  const p = d.split('/');
+  if(p.length !== 3) return 0;
+  return parseInt(p[2])*10000 + parseInt(p[1])*100 + parseInt(p[0]);
+}
+
+function toDateNum(yyyymmdd){
+  // from yyyy-mm-dd input
+  if(!yyyymmdd) return 0;
+  const p = yyyymmdd.split('-');
+  return parseInt(p[0])*10000 + parseInt(p[1])*100 + parseInt(p[2]);
+}
+
+function applyDashFilter(){
+  const from = document.getElementById('dashDateFrom').value;
+  const to   = document.getElementById('dashDateTo').value;
+  const result = document.getElementById('dashFilterResult');
+
+  if(!from && !to){
+    dashFilteredTickets = tickets;
+    result.textContent = '';
+  } else {
+    const fromNum = from ? toDateNum(from) : 0;
+    const toNum   = to   ? toDateNum(to)   : 99999999;
+    dashFilteredTickets = tickets.filter(t => {
+      const d = parseDateNum2(t.dia);
+      return d >= fromNum && d <= toNum;
+    });
+    result.textContent = `${dashFilteredTickets.length} ticket${dashFilteredTickets.length !== 1 ? 's' : ''} en el período`;
+  }
+  rebuildCharts();
+}
+
+function clearDashFilter(){
+  document.getElementById('dashDateFrom').value = '';
+  document.getElementById('dashDateTo').value   = '';
+  document.getElementById('dashFilterResult').textContent = '';
+  dashFilteredTickets = tickets;
+  rebuildCharts();
+}
+
 /* ── CHARTS ── */
 const CO={backgroundColor:'#fff',borderColor:'#e0e3ed',borderWidth:1,titleColor:'#333852',bodyColor:'#7b7fa6',padding:10};
 function buildCharts(){
   Chart.defaults.color='#7b7fa6';Chart.defaults.borderColor='#e0e3ed';
-  const total=tickets.length;if(!total)return;
-  const tc={T1:0,T2:0,T3:0};tickets.forEach(t=>{if(tc[t.turno]!==undefined)tc[t.turno]++;});
+  // Use date-filtered tickets for dashboard
+  const src = (dashFilteredTickets && dashFilteredTickets.length > 0) ? dashFilteredTickets : tickets;
+  const total=src.length;if(!total)return;
+  const tc={T1:0,T2:0,T3:0};src.forEach(t=>{if(tc[t.turno]!==undefined)tc[t.turno]++;});
   document.getElementById('donut-big').textContent=total;
   const cx=document.getElementById('chartTurnos').getContext('2d');
   if(chT)chT.destroy();
   chT=new Chart(cx,{type:'doughnut',data:{labels:['T1','T2','T3'],datasets:[{data:[tc.T1,tc.T2,tc.T3],backgroundColor:['rgba(0,166,80,.85)','rgba(45,50,119,.85)','rgba(242,61,79,.85)'],borderColor:['#00a650','#2D3277','#f23d4f'],borderWidth:2,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'72%',plugins:{legend:{display:false},tooltip:{...CO,callbacks:{label:ctx=>` ${ctx.label}: ${ctx.raw} (${Math.round(ctx.raw/total*100)}%)`}}}}});
   const leg=document.getElementById('turno-leg');leg.innerHTML='';
   [['T1','#00a650',tc.T1],['T2','#2D3277',tc.T2],['T3','#f23d4f',tc.T3]].forEach(([l,c,n])=>{leg.innerHTML+=`<div style="display:flex;align-items:center;gap:5px;font-size:12px"><span style="width:9px;height:9px;border-radius:50%;background:${c};display:inline-block"></span><span style="color:#7b7fa6">${l}</span><b style="font-family:var(--mono);color:#2D3277">${n}</b><span style="color:#9699b9">(${Math.round(n/total*100)}%)</span></div>`;});
-  const tm={};tickets.forEach(t=>{tm[t.tipo]=(tm[t.tipo]||0)+1;});
+  const tm={};src.forEach(t=>{tm[t.tipo]=(tm[t.tipo]||0)+1;});
   const ts=Object.entries(tm).sort((a,b)=>b[1]-a[1]);
   const maxT=ts[0][1];
   const hbar=document.getElementById('tipos-hbar');hbar.innerHTML='';
   ts.forEach(([tipo,cnt])=>{const pct=Math.round(cnt/maxT*100);const col=TCOL[tipo.toUpperCase()]||'#9699b9';hbar.innerHTML+=`<div class="hbar-item"><div class="hbar-row"><span class="hbar-name">${tipo}</span><span class="hbar-count">${cnt}</span></div><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${col}"></div></div></div>`;});
-  const um={};tickets.forEach(t=>{um[t.usuario]=(um[t.usuario]||0)+1;});
+  const um={};src.forEach(t=>{um[t.usuario]=(um[t.usuario]||0)+1;});
   const us=Object.entries(um).sort((a,b)=>b[1]-a[1]).slice(0,8);
   const maxU=us[0][1];
   const rank=document.getElementById('usuarios-rank');rank.innerHTML='';
   us.forEach(([u,cnt],i)=>{const pct=Math.round(cnt/maxU*100);const sn=u.length>24?u.substring(0,24)+'…':u;rank.innerHTML+=`<div class="rank-item"><span class="rank-num">#${i+1}</span><span class="rank-name" title="${u}">${sn}</span><div class="rank-bar"><div class="rank-bar-fill" style="width:${pct}%"></div></div><span class="rank-val">${cnt}</span></div>`;});
   document.getElementById('m-total').textContent=total;
-  const dias=tickets.map(t=>t.dia).filter(Boolean);
+  const dias=src.map(t=>t.dia).filter(Boolean);
   if(dias.length)document.getElementById('m-range').textContent=`${dias[0]} → ${dias[dias.length-1]}`;
   const tt=ts[0];const tel=document.getElementById('m-top-tipo');tel.textContent=tt[0];tel.className=`top-badge ${getBadge(tt[0])}`;
   document.getElementById('m-top-tipo-cnt').textContent=`${tt[1]} tickets`;document.getElementById('m-top-tipo-pct').textContent=`${Math.round(tt[1]/total*100)}% del total`;
   const tu=us[0];document.getElementById('m-top-user').textContent=tu[0];document.getElementById('m-top-user-cnt').textContent=`${tu[1]} tickets`;document.getElementById('m-top-user-pct').textContent=`${Math.round(tu[1]/total*100)}% del total`;
   document.getElementById('stat-total').textContent=total;document.getElementById('stat-tipos').textContent=Object.keys(tm).length;document.getElementById('stat-usuarios').textContent=Object.keys(um).length;
-  const mm={};tickets.forEach(t=>{const p=t.dia.split('/');if(p.length>=3){const m=parseInt(p[1])-1;mm[m]=(mm[m]||0)+1;}});
+  const mm={};src.forEach(t=>{const p=t.dia.split('/');if(p.length>=3){const m=parseInt(p[1])-1;mm[m]=(mm[m]||0)+1;}});
   const ml=[],md=[];for(let i=0;i<12;i++){if(mm[i]!==undefined){ml.push(MES[i]);md.push(mm[i]);}}
   const ctx2=document.getElementById('chartMensual').getContext('2d');
   const g=ctx2.createLinearGradient(0,0,0,220);g.addColorStop(0,'rgba(45,50,119,.2)');g.addColorStop(1,'rgba(45,50,119,.01)');
@@ -938,7 +997,7 @@ function buildCharts(){
   chM=new Chart(ctx2,{type:'line',data:{labels:ml,datasets:[{label:'Tickets',data:md,borderColor:'#2D3277',backgroundColor:g,borderWidth:2.5,pointBackgroundColor:'#FFE600',pointBorderColor:'#2D3277',pointBorderWidth:2,pointRadius:5,fill:true,tension:.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...CO}},scales:{x:{grid:{color:'#e0e3ed'},ticks:{color:'#7b7fa6'}},y:{grid:{color:'#e0e3ed'},ticks:{color:'#7b7fa6'},beginAtZero:true}}}});
   const top5=ts.slice(0,5).map(e=>e[0]);
   const ttd={};top5.forEach(t=>{ttd[t]={T1:0,T2:0,T3:0};});
-  tickets.forEach(t=>{if(ttd[t.tipo]&&ttd[t.tipo][t.turno]!==undefined)ttd[t.tipo][t.turno]++;});
+  src.forEach(t=>{if(ttd[t.tipo]&&ttd[t.tipo][t.turno]!==undefined)ttd[t.tipo][t.turno]++;});
   const ctx3=document.getElementById('chartTurnoTipo').getContext('2d');
   if(chTT)chTT.destroy();
   chTT=new Chart(ctx3,{type:'bar',data:{labels:['T1','T2','T3'],datasets:top5.map(tipo=>({label:tipo,data:[ttd[tipo].T1,ttd[tipo].T2,ttd[tipo].T3],backgroundColor:(TCOL[tipo.toUpperCase()]||'#9699b9')+'cc',borderColor:TCOL[tipo.toUpperCase()]||'#9699b9',borderWidth:1.5,borderRadius:4}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'#7b7fa6',boxWidth:12,font:{size:11}}},tooltip:{...CO}},scales:{x:{stacked:true,grid:{color:'#e0e3ed'},ticks:{color:'#7b7fa6'}},y:{stacked:true,grid:{color:'#e0e3ed'},ticks:{color:'#7b7fa6'},beginAtZero:true}}}});
