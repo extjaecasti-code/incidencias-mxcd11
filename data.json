@@ -2383,5 +2383,14 @@
     "hora": "06:31:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1030229"
+  },
+  {
+    "usuario": "Alexandra Andrea Juarez",
+    "tipo": "HH",
+    "clave": "IS-1031524",
+    "dia": "3/06/2026",
+    "hora": "13:03:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1031524"
   }
 ]
