@@ -2428,5 +2428,14 @@
     "hora": "15:00:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1032429"
+  },
+  {
+    "usuario": "Pamela Hernandez",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÑA)",
+    "clave": "IS-1032430",
+    "dia": "4/06/2026",
+    "hora": "15:02:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1032430"
   }
 ]
