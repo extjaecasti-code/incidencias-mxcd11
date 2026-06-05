@@ -2437,5 +2437,14 @@
     "hora": "15:02:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1032430"
+  },
+  {
+    "usuario": "Mario Said Alcazar",
+    "tipo": "P2S",
+    "clave": "IS-1032849",
+    "dia": "5/06/2026",
+    "hora": "05:52:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1032849"
   }
 ]
