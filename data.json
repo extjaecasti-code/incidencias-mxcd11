@@ -2491,5 +2491,14 @@
     "hora": "18:24:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1034101"
+  },
+  {
+    "usuario": "Kevin Didier Carbajal",
+    "tipo": "P2S",
+    "clave": "IS-1033845",
+    "dia": "6/06/2026",
+    "hora": "20:48:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1033845"
   }
 ]
