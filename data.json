@@ -2464,5 +2464,14 @@
     "hora": "13:31:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1034686"
+  },
+  {
+    "usuario": "edgar moises becerril velazquez",
+    "tipo": "GOOGLE (CHAT, CORREO, ACCESOS, CONTRASEÑA)",
+    "clave": "IS-1034639",
+    "dia": "8/06/2026",
+    "hora": "12:44:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1034639"
   }
 ]
