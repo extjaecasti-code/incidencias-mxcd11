@@ -2509,5 +2509,14 @@
     "hora": "18:15:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1034896"
+  },
+  {
+    "usuario": "Manuel De Jesus Lopez",
+    "tipo": "CAMARAS",
+    "clave": "IS-1035954",
+    "dia": "9/06/2026",
+    "hora": "20:55:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1035954"
   }
 ]
