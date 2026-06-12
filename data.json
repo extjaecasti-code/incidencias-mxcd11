@@ -2527,5 +2527,14 @@
     "hora": "10:32:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1036468"
+  },
+  {
+    "usuario": "Manuel De Jesus Lopez",
+    "tipo": "VPN",
+    "clave": "IS-1036658",
+    "dia": "10/06/2026",
+    "hora": "14:55:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1036658"
   }
 ]
