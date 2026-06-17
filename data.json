@@ -2608,5 +2608,14 @@
     "hora": "03:22:00",
     "turno": "T3",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1039164"
+  },
+  {
+    "usuario": "Cristian Adrian Guerrero",
+    "tipo": "BUGS",
+    "clave": "IS-1038751",
+    "dia": "13/06/2026",
+    "hora": "10:36:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1038751"
   }
 ]
