@@ -2671,5 +2671,14 @@
     "hora": "05:46:00",
     "turno": "T3",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1044061"
+  },
+  {
+    "usuario": "eduardo meraz miranda",
+    "tipo": "CCM",
+    "clave": "IS-1044020",
+    "dia": "21/06/2026",
+    "hora": "00:14:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1044020"
   }
 ]
