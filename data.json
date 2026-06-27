@@ -2743,5 +2743,14 @@
     "hora": "14:24:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1047805"
+  },
+  {
+    "usuario": "Aida Dubet Santiago",
+    "tipo": "SOFTWARE",
+    "clave": "IS-1047695",
+    "dia": "25/06/2026",
+    "hora": "14:14:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1047695"
   }
 ]
