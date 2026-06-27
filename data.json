@@ -2707,5 +2707,14 @@
     "hora": "04:41:00",
     "turno": "T3",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1048253"
+  },
+  {
+    "usuario": "Edgar Alfredo Acosta",
+    "tipo": "RING SCANNER",
+    "clave": "IS-1047590",
+    "dia": "25/06/2026",
+    "hora": "13:06:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1047590"
   }
 ]
