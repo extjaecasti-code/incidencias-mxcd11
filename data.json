@@ -2752,5 +2752,14 @@
     "hora": "14:14:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1047695"
+  },
+  {
+    "usuario": "Sandra Vanessa Martinez",
+    "tipo": "SOFTWARE",
+    "clave": "IS-1047690",
+    "dia": "25/06/2026",
+    "hora": "14:14:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1047690"
   }
 ]
