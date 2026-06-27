@@ -2716,5 +2716,14 @@
     "hora": "13:06:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1047590"
+  },
+  {
+    "usuario": "Jorge Eduardo Vega",
+    "tipo": "SOFTWARE",
+    "clave": "IS-1048011",
+    "dia": "25/06/2026",
+    "hora": "19:47:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1048011"
   }
 ]
