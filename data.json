@@ -2788,5 +2788,14 @@
     "hora": "17:14:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1051134"
+  },
+  {
+    "usuario": "eduardo meraz miranda",
+    "tipo": "CAMARAS",
+    "clave": "IS-1052025",
+    "dia": "1/07/2026",
+    "hora": "00:55:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1052025"
   }
 ]
