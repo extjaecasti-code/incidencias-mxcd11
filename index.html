@@ -192,8 +192,72 @@ td.tc a:hover{text-decoration:underline;}
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-@media(max-width:900px){.dg3{grid-template-columns:1fr 1fr;}.dg2{grid-template-columns:1fr;}}
-@media(max-width:600px){.dg3,.dg2{grid-template-columns:1fr;}.hstats{display:none;}}
+/* ── RESPONSIVE TABLET ── */
+@media(max-width:900px){
+  .dg3{grid-template-columns:1fr 1fr;}
+  .dg2{grid-template-columns:1fr;}
+  .header{padding:0 16px;}
+  .dash{padding:16px;}
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media(max-width:600px){
+  /* Layout */
+  .dg3,.dg2{grid-template-columns:1fr;}
+  .hstats{display:none;}
+  .dash{padding:12px;}
+  .dash-filter{gap:8px;padding:12px;}
+  .dash-filter input[type="date"]{font-size:12px;padding:7px 10px;}
+
+  /* Header mobile */
+  .header{height:auto;padding:10px 14px;flex-wrap:wrap;gap:8px;}
+  .header-left{width:100%;}
+  .header-title{font-size:11px;}
+  .nav-tabs{width:100%;}
+  .nav-tab{flex:1;height:40px;padding:0 8px;font-size:12px;}
+  .header-right{width:100%;justify-content:space-between;}
+  .sync-badge{font-size:10px;}
+  .user-name{font-size:11px;}
+  .user-role{display:none;}
+
+  /* Login mobile */
+  .login-box{padding:28px 20px;margin:12px;}
+  .token-section{padding:12px;}
+
+  /* Table mobile — card style */
+  .tw{padding:10px 12px;}
+  table{font-size:12px;}
+  thead th{padding:8px 8px;font-size:10px;letter-spacing:.4px;}
+  td{padding:8px 8px;}
+  td.uc{max-width:120px;}
+
+  /* Hide less important columns on mobile */
+  .col-hora{display:none;}
+  .col-link{display:none;}
+
+  /* Toolbar mobile */
+  .toolbar{padding:10px 12px;gap:8px;}
+  .sw{max-width:100%;min-width:100%;}
+  .tr{width:100%;justify-content:flex-end;}
+  .btn{padding:8px 12px;font-size:12px;}
+
+  /* Pagination mobile */
+  .pag{padding:10px 12px;}
+  .pi{font-size:11px;}
+  .pbtn{padding:5px 9px;font-size:11px;}
+
+  /* Cards mobile */
+  .card{padding:14px 16px;}
+  .metric-big{font-size:36px;}
+
+  /* Modal mobile */
+  .modal{padding:20px 16px;margin:12px;}
+  .fg{grid-template-columns:1fr;}
+  .fg .full{grid-column:1;}
+
+  /* Toast mobile */
+  .toast{bottom:16px;right:12px;left:12px;max-width:100%;}
+}
 </style>
 </head>
 <body>
@@ -359,9 +423,9 @@ td.tc a:hover{text-decoration:underline;}
           <th onclick="sortBy('tipo')">TIPO ↕</th>
           <th onclick="sortBy('clave')">CLAVE ↕</th>
           <th onclick="sortBy('dia')">FECHA ↕</th>
-          <th onclick="sortBy('hora')">HORA ↕</th>
+          <th onclick="sortBy('hora')" class="col-hora">HORA ↕</th>
           <th onclick="sortBy('turno')">TURNO ↕</th>
-          <th>LINK</th>
+          <th class="col-link">LINK</th>
           <th>ACCIONES</th>
         </tr></thead>
         <tbody id="tableBody"></tbody>
@@ -1035,9 +1099,9 @@ function renderTable(){
     <td class="uc" title="${t.usuario}">${t.usuario}</td>
     <td><span class="badge ${getBadge(t.tipo)}">${t.tipo}</span></td>
     <td class="tc"><a href="${t.link.startsWith('http')?t.link:'https://'+t.link}" target="_blank">${t.clave}</a></td>
-    <td>${t.dia}</td><td>${t.hora}</td>
+    <td>${t.dia}</td><td class='col-hora'>${t.hora}</td>
     <td><span class="tb tb${t.turno}">${t.turno}</span></td>
-    <td>${t.link?`<a href="${t.link.startsWith('http')?t.link:'https://'+t.link}" target="_blank" style="color:var(--ml-blue);font-size:12px;font-weight:600">↗ Abrir</a>`:'—'}</td>
+    <td class='col-link'>${t.link?`<a href="${t.link.startsWith('http')?t.link:'https://'+t.link}" target="_blank" style="color:var(--ml-blue);font-size:12px;font-weight:600">↗ Abrir</a>`:'—'}</td>
     <td><div class="ac"><button class="btn bg bsm" onclick="openEditModal(${t.id})">✏️</button><button class="btn bd bsm" onclick="confirmDelete(${t.id})">🗑️</button></div></td>
   </tr>`).join('');}
   renderPag(tot,s,e);updateSel();
