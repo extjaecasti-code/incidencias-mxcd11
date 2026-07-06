@@ -2815,5 +2815,14 @@
     "hora": "16:01:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1053251"
+  },
+  {
+    "usuario": "Andre Jael Castillo Diaz",
+    "tipo": "LAPTOP",
+    "clave": "IS-1054064",
+    "dia": "3/07/2026",
+    "hora": "16:51:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1054064"
   }
 ]
