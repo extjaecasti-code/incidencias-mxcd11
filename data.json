@@ -2932,5 +2932,14 @@
     "hora": "15:45:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1059681"
+  },
+  {
+    "usuario": "Miguel Angel Coyotecatl Monroy Coyotecatl Monroy",
+    "tipo": "SOFTWARE",
+    "clave": "IS-1058790",
+    "dia": "9/07/2026",
+    "hora": "15:09:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1058790"
   }
 ]
