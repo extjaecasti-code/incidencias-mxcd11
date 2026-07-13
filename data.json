@@ -2968,5 +2968,14 @@
     "hora": "08:33:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1060064"
+  },
+  {
+    "usuario": "enrique.guzmanmontoya",
+    "tipo": "SOFTWARE",
+    "clave": "IS-1060079",
+    "dia": "11/07/2026",
+    "hora": "09:46:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1060079"
   }
 ]
