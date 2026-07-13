@@ -2905,5 +2905,14 @@
     "hora": "15:48:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1057912"
+  },
+  {
+    "usuario": "Aldair Manuel Prieto",
+    "tipo": "VPN",
+    "clave": "IS-1057994",
+    "dia": "8/07/2026",
+    "hora": "18:13:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1057994"
   }
 ]
