@@ -2914,5 +2914,14 @@
     "hora": "18:13:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1057994"
+  },
+  {
+    "usuario": "Edgar Alfredo Acosta",
+    "tipo": "IMPRESORA",
+    "clave": "IS-1058506",
+    "dia": "9/07/2026",
+    "hora": "08:11:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1058506"
   }
 ]
