@@ -2896,5 +2896,14 @@
     "hora": "02:58:00",
     "turno": "T3",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1060269"
+  },
+  {
+    "usuario": "Oscar Santiago Pardo",
+    "tipo": "SOFTWARE",
+    "clave": "IS-1057912",
+    "dia": "8/07/2026",
+    "hora": "15:48:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1057912"
   }
 ]
