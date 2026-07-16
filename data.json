@@ -3031,5 +3031,14 @@
     "hora": "15:31:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1062272"
+  },
+  {
+    "usuario": "Mario Said Alcazar",
+    "tipo": "HH",
+    "clave": "IS-1061777",
+    "dia": "14/07/2026",
+    "hora": "06:03:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1061777"
   }
 ]
