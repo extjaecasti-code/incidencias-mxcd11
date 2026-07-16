@@ -3004,5 +3004,14 @@
     "hora": "12:31:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1063093"
+  },
+  {
+    "usuario": "Valeria Sanchez",
+    "tipo": "CCM",
+    "clave": "IS-1063060",
+    "dia": "15/07/2026",
+    "hora": "11:59:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1063060"
   }
 ]
