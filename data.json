@@ -3013,5 +3013,14 @@
     "hora": "11:59:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1063060"
+  },
+  {
+    "usuario": "Brandon Kevin Tamayo",
+    "tipo": "LAPTOP",
+    "clave": "IS-1062946",
+    "dia": "15/07/2026",
+    "hora": "09:17:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1062946"
   }
 ]
