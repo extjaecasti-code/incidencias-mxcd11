@@ -3058,5 +3058,14 @@
     "hora": "19:52:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1065579"
+  },
+  {
+    "usuario": "Maria Del Socorro Martinez",
+    "tipo": "HH",
+    "clave": "IS-1065018",
+    "dia": "17/07/2026",
+    "hora": "13:01:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1065018"
   }
 ]
