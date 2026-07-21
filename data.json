@@ -3040,5 +3040,14 @@
     "hora": "06:03:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1061777"
+  },
+  {
+    "usuario": "Selene Gissel Terrero",
+    "tipo": "HH",
+    "clave": "IS-1066155",
+    "dia": "20/07/2026",
+    "hora": "09:36:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1066155"
   }
 ]
