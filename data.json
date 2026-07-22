@@ -3121,5 +3121,14 @@
     "hora": "19:02:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1067622"
+  },
+  {
+    "usuario": "Roberto Carlos Oloarte",
+    "tipo": "LAPTOP",
+    "clave": "IS-1067626",
+    "dia": "21/07/2026",
+    "hora": "19:07:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1067626"
   }
 ]
