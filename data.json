@@ -3157,5 +3157,14 @@
     "hora": "05:39:00",
     "turno": "T3",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1072100"
+  },
+  {
+    "usuario": "Selene Gissel Terrero",
+    "tipo": "P2S",
+    "clave": "IS-1071502",
+    "dia": "20/07/2026",
+    "hora": "12:25:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1071502"
   }
 ]
