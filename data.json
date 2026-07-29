@@ -3148,5 +3148,14 @@
     "hora": "18:01:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1072713"
+  },
+  {
+    "usuario": "roberto carlos trejo hernandez",
+    "tipo": "CAMARAS",
+    "clave": "IS-1072100",
+    "dia": "28/07/2026",
+    "hora": "05:39:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1072100"
   }
 ]
