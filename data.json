@@ -3139,5 +3139,14 @@
     "hora": "19:09:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1067627"
+  },
+  {
+    "usuario": "Thania Abril Nunez",
+    "tipo": "CCM",
+    "clave": "IS-1072713",
+    "dia": "28/07/2026",
+    "hora": "18:01:00",
+    "turno": "T2",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1072713"
   }
 ]
