@@ -3193,5 +3193,14 @@
     "hora": "09:29:00",
     "turno": "T1",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1070029"
+  },
+  {
+    "usuario": "Miguel Angel Coyotecatl Monroy Coyotecatl Monroy",
+    "tipo": "VPN",
+    "clave": "IS-1073433",
+    "dia": "29/07/2026",
+    "hora": "12:25:00",
+    "turno": "T1",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1073433"
   }
 ]
