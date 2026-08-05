@@ -3256,5 +3256,14 @@
     "hora": "18:52:00",
     "turno": "T2",
     "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1075504"
+  },
+  {
+    "usuario": "Joaquin Aguilar",
+    "tipo": "BUGS",
+    "clave": "IS-1077029",
+    "dia": "3/08/2026",
+    "hora": "23:06:00",
+    "turno": "T3",
+    "link": "https://mercadolibre.atlassian.net/servicedesk/customer/portal/202/IS-1077029"
   }
 ]
